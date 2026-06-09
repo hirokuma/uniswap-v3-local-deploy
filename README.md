@@ -1,3 +1,17 @@
+# Uniswap v3 local deployment
+
+## Usage
+
+Run [anvil](https://www.getfoundry.sh/anvil).
+
+```shell
+$ git clone https://github.com/hirokuma/uniswap-v3-local-deploy.git
+$ cd uniswap-v3-local-deploy
+$ git submodule update --init
+$ cd deployment
+$ ./run-script.sh
+```
+
 ## Foundry
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
