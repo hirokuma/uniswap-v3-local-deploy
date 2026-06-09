@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED 
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity =0.7.6;
 
 interface Vm {
@@ -12,8 +12,7 @@ import {SwapRouter} from "@uniswap/v3-periphery/contracts/SwapRouter.sol";
 import {WETH9} from "../src/WETH9.sol";
 
 contract Deploy {
-    Vm constant vm =
-        Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
+    Vm constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
 
     function run() external {
         vm.startBroadcast();
