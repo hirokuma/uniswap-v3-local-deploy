@@ -8,6 +8,8 @@ interface Vm {
 
 import {UniswapV3Factory} from "@uniswap/v3-core/contracts/UniswapV3Factory.sol";
 import {SwapRouter} from "@uniswap/v3-periphery/contracts/SwapRouter.sol";
+import {NonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/NonfungiblePositionManager.sol";
+import {Quoter} from "@uniswap/v3-periphery/contracts/lens/Quoter.sol";
 
 import {WETH9} from "../src/WETH9.sol";
 
@@ -19,7 +21,12 @@ contract Deploy {
 
         UniswapV3Factory factory = new UniswapV3Factory();
         WETH9 weth9 = new WETH9();
+
+        // Swap
         new SwapRouter(address(factory), address(weth9));
+
+        // liquidity追加
+        // new NonfungiblePositionManager(address(factory), address(weth9), address(tokenDescriptor));
 
         vm.stopBroadcast();
     }
