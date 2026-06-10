@@ -8,8 +8,8 @@ Run [anvil](https://www.getfoundry.sh/anvil).
 $ git clone https://github.com/hirokuma/uniswap-v3-local-deploy.git
 $ cd uniswap-v3-local-deploy
 $ git submodule update --init
-$ cd deployment
-$ ./run-script.sh
+$ cp .env-sample .env
+$ scripts/deploy-all.sh
 ```
 
 ## Foundry

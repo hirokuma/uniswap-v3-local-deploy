@@ -9,6 +9,9 @@ source $SCRIPT_DIR/deploy-dirs
 rm -f .env-addrs
 touch .env-addrs
 for dir in "${DIRS[@]}"; do
+    echo "#####"
+    echo "##### Deploy: $dir"
+    echo "#####"
     source .env-addrs
     $DEPLOY_SCRIPT $dir $1
 
