@@ -1,0 +1,1 @@
+DIRS=("deployment" "tokens" "lp")

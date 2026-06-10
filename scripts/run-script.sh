@@ -1,6 +1,6 @@
 #!/bin/bash -ue
 
-if [[ $# -eq 0 || $# gt 2 ]]; then
+if [[ $# -eq 0 || $# -gt 2 ]]; then
     echo "Bad parameter:"
     echo "   $0 <DEPLOY_DIR> [clean]"
     exit 1
