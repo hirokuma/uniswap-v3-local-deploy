@@ -7,9 +7,9 @@ interface Vm {
     function envAddress(string calldata key) external view returns (address);
 }
 
-import {INonfungiblePositionManager} from '@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol';
+import {ISwapRouter} from '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
 
-import {LiquidityExamples} from "../src/lp_example.sol";
+import {SwapExamples} from "../src/swap_example.sol";
 
 contract Deploy {
     Vm constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
@@ -17,12 +17,13 @@ contract Deploy {
     function run() external {
         vm.startBroadcast();
 
-        address nonfungiblePositionManager = vm.envAddress("NONFUNGIBLEPOSITIONMANAGER");
+        address swapRouter = vm.envAddress("SWAPROUTER");
+        address weth9 = vm.envAddress("WETH9");
         address addr1 = vm.envAddress("TOK1");
         address addr2 = vm.envAddress("TOK2");
 
-        INonfungiblePositionManager nfpm = INonfungiblePositionManager(nonfungiblePositionManager);
-        new LiquidityExamples(nfpm, addr1, addr2);
+        ISwapRouter sr = ISwapRouter(swapRouter);
+        new SwapExamples(sr, weth9, addr1, addr2);
 
         vm.stopBroadcast();
     }
