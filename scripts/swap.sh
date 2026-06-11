@@ -15,6 +15,7 @@ function balance() {
 }
 
 balance
+echo
 
 echo "Approve SwapExmaple to transfer User's DAI"
 res=$(cast send $TOK1 "approve(address,uint256)" $SWAPEXAMPLES 1ether --private-key $PRIVKEY --rpc-url $RPC_URL)
@@ -26,8 +27,9 @@ if [[ $cnt -ne 0 ]]; then
     exit 1
 fi
 
-echo "Swap: User=WETH9 <--> DAI"
-res=$(cast send $SWAPEXAMPLES "swapExactInputSingle(uint256)" 10wei --from $ADDR --gas-limit 300000 --private-key $PRIVKEY --rpc-url $RPC_URL)
+echo
+echo "Swap: User send 0.01 TOK1 and get WETH"
+res=$(cast send $SWAPEXAMPLES "swapExactInputSingle(uint256)" 0.01ether --from $ADDR --gas-limit 300000 --private-key $PRIVKEY --rpc-url $RPC_URL)
 cnt=$(echo $res | grep -c "(failed)" || true)
 if [[ $cnt -ne 0 ]]; then
     echo "Error happened:"
@@ -35,7 +37,5 @@ if [[ $cnt -ne 0 ]]; then
     echo "EXIT by ERROR"
     exit 1
 fi
-
-sleep 2
 
 balance
