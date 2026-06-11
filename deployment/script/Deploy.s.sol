@@ -8,6 +8,7 @@ interface Vm {
 }
 
 import {UniswapV3Factory} from "@uniswap/v3-core/contracts/UniswapV3Factory.sol";
+// import {UniswapV3Pool} from '@uniswap/v3-core/contracts/UniswapV3Pool.sol';
 import {SwapRouter} from "@uniswap/v3-periphery/contracts/SwapRouter.sol";
 import "@uniswap/v3-periphery/contracts/libraries/NFTDescriptor.sol";
 import {NonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/NonfungiblePositionManager.sol";
@@ -27,6 +28,9 @@ contract Deploy {
 
         address weth9 = vm.envAddress("WETH9");
         UniswapV3Factory factory = new UniswapV3Factory();
+
+        // pool
+        // new UniswapV3Pool();
 
         // swap
         new SwapRouter(address(factory), weth9);

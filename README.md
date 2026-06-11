@@ -10,6 +10,9 @@ $ cd uniswap-v3-local-deploy
 $ git submodule update --init
 $ cp .env-sample .env
 $ scripts/deploy-all.sh
+$ scripts/pay-to-tokens.sh
+$ scripts/liquidity.sh
+$ scripts/swap.sh
 ```
 
 ## Foundry
