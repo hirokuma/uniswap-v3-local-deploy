@@ -9,8 +9,5 @@ optimizer_runs = 200
 remappings = [
     '@uniswap/v3-core/contracts/=../lib/v3-core/contracts/',
     '@uniswap/v3-periphery/contracts/=../lib/v3-periphery/contracts/',
-    '@uniswap/lib/contracts/=../lib/solidity-lib/contracts/',
-    'base64-sol/=../lib/base64/',
-    '@openzeppelin/contracts/=../lib/oz-contracts-usv3/contracts/',
-    'forge-std/=../lib/forge-std-usv3/src/'
+    '@openzeppelin/contracts/=../lib/oz-contracts-usv3/contracts/'
 ]

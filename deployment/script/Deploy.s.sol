@@ -4,9 +4,11 @@ pragma solidity =0.7.6;
 interface Vm {
     function startBroadcast() external;
     function stopBroadcast() external;
+    function envAddress(string calldata key) external view returns (address);
 }
 
 import {UniswapV3Factory} from "@uniswap/v3-core/contracts/UniswapV3Factory.sol";
+// import {UniswapV3Pool} from '@uniswap/v3-core/contracts/UniswapV3Pool.sol';
 import {SwapRouter} from "@uniswap/v3-periphery/contracts/SwapRouter.sol";
 import "@uniswap/v3-periphery/contracts/libraries/NFTDescriptor.sol";
 import {NonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/NonfungiblePositionManager.sol";
@@ -14,8 +16,6 @@ import {
     NonfungibleTokenPositionDescriptor
 } from "@uniswap/v3-periphery/contracts/NonfungibleTokenPositionDescriptor.sol";
 // import {Quoter} from "@uniswap/v3-periphery/contracts/lens/Quoter.sol";
-
-import {WETH9} from "../src/WETH9.sol";
 
 contract Deploy {
     Vm constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
@@ -26,17 +26,20 @@ contract Deploy {
     function run() external {
         vm.startBroadcast();
 
+        address weth9 = vm.envAddress("WETH9");
         UniswapV3Factory factory = new UniswapV3Factory();
-        WETH9 weth9 = new WETH9();
+
+        // pool
+        // new UniswapV3Pool();
 
         // swap
-        new SwapRouter(address(factory), address(weth9));
+        new SwapRouter(address(factory), weth9);
 
         // liquidity
         NonfungibleTokenPositionDescriptor desc = new NonfungibleTokenPositionDescriptor(
-            address(weth9), nativeCurrencyLabel
+            weth9, nativeCurrencyLabel
         );
-        new NonfungiblePositionManager(address(factory), address(weth9), address(desc));
+        new NonfungiblePositionManager(address(factory), weth9, address(desc));
 
         vm.stopBroadcast();
     }

@@ -1,0 +1,4 @@
+DIRS=("tokens" "deployment" "lp" "swap")
+# DIRS=("tokens" "deployment" "lp")
+# DIRS=("tokens" "deployment")
+# DIRS=("tokens")
