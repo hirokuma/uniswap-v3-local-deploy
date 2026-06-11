@@ -6,11 +6,11 @@ source ./.env-addrs
 function balance() {
     val=$(cast balance $ADDR)
     echo "native: $val"
-    val=$(cast call $WETH9 "balanceOf(address)" $ADDR)
+    val=$(cast call $WETH9 "balanceOf(address)" $ADDR | cast to-dec)
     echo "WETH9: $val"
-    val=$(cast call $TOK1 "balanceOf(address)" $ADDR)
+    val=$(cast call $TOK1 "balanceOf(address)" $ADDR | cast to-dec)
     echo "TOK1: $val"
-    val=$(cast call $TOK2 "balanceOf(address)" $ADDR)
+    val=$(cast call $TOK2 "balanceOf(address)" $ADDR | cast to-dec)
     echo "TOK2: $val"
 }
 
